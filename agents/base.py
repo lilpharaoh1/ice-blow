@@ -10,5 +10,11 @@ class BaseAgent(ABC):
     def act(self, obs):
         pass
 
+    def observe(self, trajectory):
+        pass
+
+    def update(self):
+        pass
+
     def reset(self):
         pass

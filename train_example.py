@@ -3,21 +3,29 @@ import pygame
 import numpy as np
 
 from run_utils import setup_run_list
+from agents.registry import make_agent
+from render import IceBlowRenderer
+
 from envs.ice_blow_discrete import IceBlowDiscreteEnv
 from envs.ice_blow_continuous import IceBlowContinuousEnv
-from render import IceBlowRenderer
-from agents.registry import make_agent
 
+from training.trajectory import Trajectory
+from training.logger import Logger
+
+
+# ---------------------------------------------------------------------
+# Environment factory
+# ---------------------------------------------------------------------
 
 def make_env(run):
-    blow = run.blow
+    blow_cfg = run.blow
 
     common_kwargs = dict(
-        blow_interval=blow["interval"],
-        warning_duration=blow["warning_duration"],
-        active_duration=blow["active_duration"],
-        blow_width=blow["width"],
-        num_blow_lines=blow["num_lines"],
+        blow_interval=blow_cfg["interval"],
+        warning_duration=blow_cfg["warning_duration"],
+        active_duration=blow_cfg["active_duration"],
+        blow_width=blow_cfg["width"],
+        num_blow_lines=blow_cfg["num_lines"],
     )
 
     if run.env["type"] == "discrete":
@@ -25,69 +33,141 @@ def make_env(run):
             grid_size=run.env["grid_size"],
             **common_kwargs,
         )
+    elif run.env["type"] == "continuous":
+        return IceBlowContinuousEnv(
+            **common_kwargs,
+        )
     else:
-        return IceBlowContinuousEnv(**common_kwargs)
+        raise ValueError(f"Unknown env type: {run.env['type']}")
 
 
-def run_single(run):
-    print(f"=== Running {run.run_name} ===")
+# ---------------------------------------------------------------------
+# Single run (train or eval)
+# ---------------------------------------------------------------------
+
+def run_single(run, render=False, fps=30, eval_mode=False):
+    print(f"\n=== Running {run.run_name} | eval={eval_mode} ===")
 
     np.random.seed(run.seed)
 
     env = make_env(run)
     agent = make_agent(run.agent, env)
 
+    logger = Logger(run.output_path)
+    trajectory = Trajectory()
+
+    renderer = None
+    if render:
+        pygame.init()
+        renderer = IceBlowRenderer(fps=fps)
+
     obs, _ = env.reset(seed=run.seed)
 
-    renderer = IceBlowRenderer()
-    steps = run.run["steps"]
+    episode_reward = 0.0
+    episode_length = 0
+    episode_idx = 0
 
-    for _ in range(steps):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                renderer.close()
-                return
+    max_steps = run.run["steps"]
 
-        # Placeholder agent logic
+    for step in range(max_steps):
+
+        # --------------------------------------------------------------
+        # Handle window events (only if rendering)
+        # --------------------------------------------------------------
+        if render:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    return
+
+        # --------------------------------------------------------------
+        # Agent action
+        # --------------------------------------------------------------
         action = agent.act(obs)
+
+        # Allow no-op actions (keyboard agent)
         if action is None:
+            if render:
+                renderer.step()
             continue
 
-        obs, reward, done, _, _ = env.step(action)
+        next_obs, reward, done, _, info = env.step(action)
 
-        if isinstance(obs, dict):
-            agent_pos = obs["agent"]
-            goal_pos = obs["goal"]
-        else:
-            agent_pos = obs[:2]
-            goal_pos = obs[4:6]
+        trajectory.add(obs, action, reward, done)
 
-        renderer.render(
-            agent_pos=agent_pos,
-            goal_pos=goal_pos,
-            blow_phase=env.blow_phase,
-            blow_axis=env.blow_axis,
-            blow_centers=env.blow_centers,
-            blow_width=env.blow_width,
-            world_size=env.world_size,
-        )
+        episode_reward += reward
+        episode_length += 1
 
+        # --------------------------------------------------------------
+        # Rendering
+        # --------------------------------------------------------------
+        if render:
+            renderer.render(
+                agent_pos=obs["agent"] if isinstance(obs, dict) else obs[:2],
+                goal_pos=obs["goal"] if isinstance(obs, dict) else obs[4:6],
+                blow_phase=env.blow_phase,
+                blow_axis=env.blow_axis,
+                blow_centers=env.blow_centers,
+                blow_width=env.blow_width,
+                world_size=env.world_size,
+            )
+            renderer.step()
+
+        obs = next_obs
+
+        # --------------------------------------------------------------
+        # Episode termination
+        # --------------------------------------------------------------
         if done:
-            obs, _ = env.reset()
+            logger.log_episode({
+                "episode": episode_idx,
+                "reward": episode_reward,
+                "length": episode_length,
+                "seed": run.seed,
+                "eval": eval_mode,
+            })
+
+            if not eval_mode:
+                agent.observe(trajectory)
+                agent.update()
+
+            trajectory.clear()
             agent.reset()
 
-    renderer.close()
+            obs, _ = env.reset()
 
+            episode_reward = 0.0
+            episode_length = 0
+            episode_idx += 1
+
+    logger.flush()
+
+    if render:
+        pygame.quit()
+
+
+# ---------------------------------------------------------------------
+# Main entry point
+# ---------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runfile", type=str, required=True)
+    parser.add_argument("--render", action="store_true")
+    parser.add_argument("--fps", type=int, default=30)
+    parser.add_argument("--eval", action="store_true")
+
     args = parser.parse_args()
 
     run_list = setup_run_list(args.runfile)
 
     for run in run_list:
-        run_single(run)
+        run_single(
+            run,
+            render=args.render,
+            fps=args.fps,
+            eval_mode=args.eval,
+        )
 
 
 if __name__ == "__main__":
