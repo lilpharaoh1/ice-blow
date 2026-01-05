@@ -8,8 +8,8 @@ AGENT_REGISTRY = {
 }
 
 
-def make_agent(agent_cfg, env):
-    agent_type = agent_cfg["type"]
+def make_agent(cfg, env):
+    agent_type = cfg.agent["type"]
 
     if agent_type not in AGENT_REGISTRY:
         raise ValueError(f"Unknown agent type: {agent_type}")
@@ -17,8 +17,8 @@ def make_agent(agent_cfg, env):
     agent_cls = AGENT_REGISTRY[agent_type]
 
     return agent_cls(
+        cfg=cfg,
         action_space=env.action_space,
         obs_space=env.observation_space,
-        env_type=agent_cfg.get("env_type", "discrete"),
-        **agent_cfg,
+        env_type=cfg.env.get("type", "discrete"),
     )

@@ -47,6 +47,11 @@ class IceBlowBaseEnv(gym.Env):
         self.step_count = 0
         self.blow_timer = 0
         self.blow_active = False
+        self.blow_phase = "idle"   # "idle" | "warning" | "active"
+        self.blow_axis = None     # 0 (x) or 1 (y)
+        self.blow_centers = None  # list of coords
+        self.phase_timer = 0 
+
 
         self.agent_pos = self.sample_agent_pos()
         self.goal_pos = self.sample_goal_pos()
@@ -111,24 +116,41 @@ class IceBlowBaseEnv(gym.Env):
                 size=self.num_blow_lines
             ).tolist()
 
+    def _intervals_overlap(self, a_min, a_max, b_min, b_max):
+        return (a_min <= b_max) and (b_min <= a_max)
+
     def _reached_goal(self):
-        return np.linalg.norm(self.agent_pos - self.goal_pos) < self.goal_radius
+        # Agent box
+        agent_min = self.agent_pos
+        agent_max = self.agent_pos + 1.0
+
+        # Goal box
+        goal_min = self.goal_pos
+        goal_max = self.goal_pos + 1.0
+
+        return (
+            self._intervals_overlap(agent_min[0], agent_max[0], goal_min[0], goal_max[0])
+            and
+            self._intervals_overlap(agent_min[1], agent_max[1], goal_min[1], goal_max[1])
+        )
 
     def _agent_exposed(self):
         if self.blow_phase != "active":
             return False
 
-        agent_val = self.agent_pos[self.blow_axis]
+        axis = self.blow_axis  # 0 = x, 1 = y
+
+        # Agent interval (top-left corner, width = 1)
+        agent_min = self.agent_pos[axis]
+        agent_max = agent_min + 1.0
 
         for c in self.blow_centers:
-            if self.world_size > 1:
-                # Discrete
-                if abs(agent_val - c) <= self.blow_width:
-                    return True
-            else:
-                # Continuous
-                if abs(agent_val - c) <= self.blow_width:
-                    return True
+            # Blow slab interval
+            blow_min = c - self.blow_width
+            blow_max = c + self.blow_width + 1.0
+
+            if self._intervals_overlap(agent_min, agent_max, blow_min, blow_max):
+                return True
 
         return False
 

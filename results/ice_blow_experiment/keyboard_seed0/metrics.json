@@ -1,0 +1,289 @@
+[
+  {
+    "episode": 0,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 1,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 2,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 3,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 4,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 5,
+    "reward": 1.0,
+    "length": 160,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 6,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 7,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 8,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 9,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 10,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 11,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 12,
+    "reward": 0.0,
+    "length": 210,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 13,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 14,
+    "reward": 2.0,
+    "length": 260,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 15,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 16,
+    "reward": 1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 17,
+    "reward": 0.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 18,
+    "reward": 1.0,
+    "length": 160,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 19,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 20,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 21,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 22,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 23,
+    "reward": 0.0,
+    "length": 110,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 24,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 25,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 26,
+    "reward": 0.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 27,
+    "reward": 2.0,
+    "length": 210,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 28,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 29,
+    "reward": 0.0,
+    "length": 110,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 30,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 31,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 32,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 33,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 34,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 35,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 36,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 37,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 38,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 39,
+    "reward": -1.0,
+    "length": 1,
+    "seed": 0,
+    "eval": true
+  },
+  {
+    "episode": 40,
+    "reward": -1.0,
+    "length": 60,
+    "seed": 0,
+    "eval": true
+  }
+]

@@ -49,7 +49,7 @@ class IceBlowRenderer:
                     if idx < 0 or idx >= world_size:
                         continue
 
-                    if blow_axis == "x":
+                    if blow_axis == 0:
                         rect = pygame.Rect(
                             idx * cell_size,
                             0,

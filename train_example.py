@@ -35,6 +35,7 @@ def make_env(run):
         )
     elif run.env["type"] == "continuous":
         return IceBlowContinuousEnv(
+            grid_size=run.env["grid_size"],
             **common_kwargs,
         )
     else:
@@ -51,7 +52,7 @@ def run_single(run, render=False, fps=30, eval_mode=False):
     np.random.seed(run.seed)
 
     env = make_env(run)
-    agent = make_agent(run.agent, env)
+    agent = make_agent(run, env)
 
     logger = Logger(run.output_path)
     trajectory = Trajectory()

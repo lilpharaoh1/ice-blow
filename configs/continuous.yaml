@@ -1,0 +1,27 @@
+experiment_name: ice_blow_experiment
+n_seeds: 5
+start_seed: 0
+
+defaults:
+  env:
+    type: continuous
+    grid_size: 5
+
+  blow:
+    interval: 50
+    warning_duration: 30
+    active_duration: 5
+    width: 0
+    num_lines: 2
+
+  run:
+    steps: 2000
+
+runs:
+  # - name: random
+  #   agent:
+  #     type: random
+
+  - name: keyboard
+    agent:
+      type: keyboard

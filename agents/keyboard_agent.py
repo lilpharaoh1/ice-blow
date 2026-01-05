@@ -39,8 +39,8 @@ class KeyboardAgent(BaseAgent):
             if keys[pygame.K_RIGHT]:
                 action[0] += self.speed
             if keys[pygame.K_UP]:
-                action[1] += self.speed
-            if keys[pygame.K_DOWN]:
                 action[1] -= self.speed
+            if keys[pygame.K_DOWN]:
+                action[1] += self.speed
 
             return action
