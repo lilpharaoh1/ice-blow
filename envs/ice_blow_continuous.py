@@ -43,7 +43,9 @@ class IceBlowContinuousEnv(IceBlowBaseEnv):
                 phase_map[self.blow_phase],
                 -1.0 if self.blow_axis is None else float(self.blow_axis),
                 -1.0 if self.blow_coord is None else self.blow_coord,
-            ])
+            ]),
+            np.array(self.blow_centers) if self.blow_centers else np.full(self.num_blow_lines, -1.0),
+            np.array([self.blow_width]),
         ])
 
 

@@ -11,9 +11,12 @@ class IceBlowBaseEnv(gym.Env):
         blow_interval=50,
         warning_duration=10,
         active_duration=5,
+        blow_width=0,
+        num_blow_lines=1,
         goal_radius=0.05,
         render_mode=None,
     ):
+
 
         self.world_size = world_size
         self.goal_radius = goal_radius
@@ -25,7 +28,10 @@ class IceBlowBaseEnv(gym.Env):
         self.blow_active = False
         self.blow_phase = "idle"   # "idle" | "warning" | "active"
         self.blow_axis = None     # 0 (x) or 1 (y)
-        self.blow_coord = None
+        self.blow_centers = None  # list of coords
+        self.blow_width = blow_width
+        self.num_blow_lines = num_blow_lines
+
 
         self.warning_duration = warning_duration
         self.active_duration = active_duration
@@ -88,35 +94,44 @@ class IceBlowBaseEnv(gym.Env):
             if self.phase_timer <= 0:
                 self.blow_phase = "idle"
                 self.blow_axis = None
-                self.blow_coord = None
+                self.blow_centers = None
 
     def _sample_blow_axis(self):
         self.blow_axis = self.np_random.integers(0, 2)
 
         if self.world_size > 1:
-            # discrete
-            self.blow_coord = self.np_random.integers(0, self.world_size)
+            max_coord = self.world_size - 1
+            self.blow_centers = self.np_random.choice(
+                max_coord + 1,
+                size=self.num_blow_lines,
+                replace=False,
+            ).tolist()
         else:
-            # continuous
-            self.blow_coord = self.np_random.random()
+            self.blow_centers = self.np_random.random(
+                size=self.num_blow_lines
+            ).tolist()
 
     def _reached_goal(self):
         return np.linalg.norm(self.agent_pos - self.goal_pos) < self.goal_radius
 
     def _agent_exposed(self):
-        # Exposure is ONLY possible during ACTIVE phase
         if self.blow_phase != "active":
             return False
 
         agent_val = self.agent_pos[self.blow_axis]
 
-        if self.world_size > 1:
-            # Discrete
-            return agent_val == self.blow_coord
-        else:
-            # Continuous
-            eps = 0.03
-            return abs(agent_val - self.blow_coord) < eps
+        for c in self.blow_centers:
+            if self.world_size > 1:
+                # Discrete
+                if abs(agent_val - c) <= self.blow_width:
+                    return True
+            else:
+                # Continuous
+                if abs(agent_val - c) <= self.blow_width:
+                    return True
+
+        return False
+
 
 
     # Methods subclasses MUST implement
