@@ -14,12 +14,16 @@ class IceBlowBaseEnv(gym.Env):
         blow_width=0,
         num_blow_lines=1,
         goal_radius=0.05,
+        time_limit=25000,
+        step_penalty=0.01,
         render_mode=None,
     ):
 
 
         self.world_size = world_size
         self.goal_radius = goal_radius
+        self.time_limit = time_limit
+        self.step_penalty = step_penalty
         self.render_mode = render_mode
 
         self.step_count = 0
@@ -65,16 +69,17 @@ class IceBlowBaseEnv(gym.Env):
         self._apply_action(action)
 
         terminated = False
-        reward = 0.0
+        reward = -self.step_penalty  # Small penalty for each step
 
         if self._agent_exposed():
             reward = -1.0
             terminated = True
-
-
         elif self._reached_goal():
             reward = +1.0
             self.goal_pos = self.sample_goal_pos()
+
+        if self.step_count >= self.time_limit:
+            terminated = True
 
         return self._get_obs(), reward, terminated, False, {}
 

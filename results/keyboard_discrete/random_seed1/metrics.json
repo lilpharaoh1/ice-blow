@@ -1,0 +1,950 @@
+[
+  {
+    "episode": 0,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 1,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 2,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 3,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 4,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 5,
+    "reward": -1.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 6,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 7,
+    "reward": 0.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 8,
+    "reward": -1.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 9,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 10,
+    "reward": -1.0,
+    "length": 500,
+    "seed": 1
+  },
+  {
+    "episode": 11,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 12,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 13,
+    "reward": 0.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 14,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 15,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 16,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 17,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 18,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 19,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 20,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 21,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 22,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 23,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 24,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 25,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 26,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 27,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 28,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 29,
+    "reward": -1.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 30,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 31,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 32,
+    "reward": -1.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 33,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 34,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 35,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 36,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 37,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 38,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 39,
+    "reward": -1.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 40,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 41,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 42,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 43,
+    "reward": -1.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 44,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 45,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 46,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 47,
+    "reward": 1.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 48,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 49,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 50,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 51,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 52,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 53,
+    "reward": -1.0,
+    "length": 203,
+    "seed": 1
+  },
+  {
+    "episode": 54,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 55,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 56,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 57,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 58,
+    "reward": -1.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 59,
+    "reward": 0.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 60,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 61,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 62,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 63,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 64,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 65,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 66,
+    "reward": 1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 67,
+    "reward": 0.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 68,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 69,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 70,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 71,
+    "reward": 0.0,
+    "length": 700,
+    "seed": 1
+  },
+  {
+    "episode": 72,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 73,
+    "reward": -1.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 74,
+    "reward": 0.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 75,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 76,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 77,
+    "reward": 0.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 78,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 79,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 80,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 81,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 82,
+    "reward": 1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 83,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 84,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 85,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 86,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 87,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 88,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 89,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 90,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 91,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 92,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 93,
+    "reward": -1.0,
+    "length": 203,
+    "seed": 1
+  },
+  {
+    "episode": 94,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 95,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 96,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 97,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 98,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 99,
+    "reward": 0.0,
+    "length": 700,
+    "seed": 1
+  },
+  {
+    "episode": 100,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 101,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 102,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 103,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 104,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 105,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 106,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 107,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 108,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 109,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 110,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 111,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 112,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 113,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 114,
+    "reward": -1.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 115,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 116,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 117,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 118,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 119,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 120,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 121,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 122,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 123,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 124,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 125,
+    "reward": -1.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 126,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 127,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 128,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 129,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 130,
+    "reward": 1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 131,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 132,
+    "reward": 1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 133,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 134,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 135,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 136,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 137,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 138,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 139,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 140,
+    "reward": 0.0,
+    "length": 300,
+    "seed": 1
+  },
+  {
+    "episode": 141,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 142,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 143,
+    "reward": 0.0,
+    "length": 400,
+    "seed": 1
+  },
+  {
+    "episode": 144,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 145,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 146,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 147,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 148,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 149,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 150,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 151,
+    "reward": -1.0,
+    "length": 200,
+    "seed": 1
+  },
+  {
+    "episode": 152,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 153,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 154,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 155,
+    "reward": 0.0,
+    "length": 100,
+    "seed": 1
+  },
+  {
+    "episode": 156,
+    "reward": -1.0,
+    "length": 500,
+    "seed": 1
+  },
+  {
+    "episode": 157,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 1
+  }
+]

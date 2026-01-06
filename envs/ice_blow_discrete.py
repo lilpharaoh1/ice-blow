@@ -15,6 +15,7 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
         dt=0.1,
         friction=0.98,
         vel_scale=1.0,
+        max_vel=1.0,
         **kwargs
     ):
         super().__init__(world_size=grid_size, **kwargs)
@@ -32,35 +33,41 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
         # 4 = -y accel
         self.action_space = spaces.Discrete(5)
 
-        # Observation: matching discrete layout
+        # Observation: normalized for better learning
+        # Positions normalized to [0, 1], velocities scaled, blow info consistent
         self.observation_space = spaces.Dict({
             "agent": spaces.Box(
                 low=0.0,
-                high=float(grid_size),
+                high=1.0,
                 shape=(2,),
                 dtype=np.float32
             ),
             "velocity": spaces.Box(
-                low=-np.inf,
-                high=np.inf,
+                low=-10.0,  # reasonable velocity bounds after scaling
+                high=10.0,
                 shape=(2,),
                 dtype=np.float32
             ),
             "goal": spaces.Box(
                 low=0.0,
-                high=float(grid_size),
+                high=1.0,
                 shape=(2,),
                 dtype=np.float32
             ),
-            "blow_phase": spaces.Discrete(3),
-            "blow_axis": spaces.Discrete(2),
+            "blow_phase": spaces.Discrete(3),  # 0=idle, 1=warning, 2=active
+            "blow_axis": spaces.Discrete(3),   # 0=x, 1=y, 2=inactive
             "blow_centers": spaces.Box(
-                low=0,
-                high=grid_size - 1,
+                low=0.0,
+                high=1.0,
                 shape=(self.num_blow_lines,),
-                dtype=np.int32
+                dtype=np.float32
             ),
-            "blow_width": spaces.Discrete(grid_size),
+            "blow_width": spaces.Box(
+                low=0.0,
+                high=1.0,
+                shape=(1,),
+                dtype=np.float32
+            ),
         })
 
         self.vel = np.zeros(2, dtype=np.float32)
@@ -117,25 +124,31 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
 
     def _get_obs(self):
         phase_map = {"idle": 0, "warning": 1, "active": 2}
-        axis_map = {"x": 0, "y": 1}
 
-        blow_centers = (
-            np.array(self.blow_centers, dtype=np.int32)
-            if self.blow_centers
-            else np.full(self.num_blow_lines, -1, dtype=np.int32)
-        )
-        blow_axis = (
-            self.blow_axis
-            if self.blow_axis
-            else -1
-        )
+        # Normalize positions to [0, 1]
+        agent_normalized = self.agent_pos / self.grid_size
+        goal_normalized = self.goal_pos / self.grid_size
+
+        # Handle blow information consistently (no -1 values)
+        if self.blow_centers is not None:
+            # Normalize blow centers to [0, 1]
+            blow_centers = np.array(self.blow_centers, dtype=np.float32) / self.grid_size
+        else:
+            # Use 0.0 when inactive (valid value in [0, 1])
+            blow_centers = np.zeros(self.num_blow_lines, dtype=np.float32)
+
+        # blow_axis: 0=x, 1=y, 2=inactive (instead of -1)
+        blow_axis = self.blow_axis if self.blow_axis is not None else 2
+
+        # Normalize blow_width to [0, 1]
+        blow_width_normalized = np.array([self.blow_width / self.grid_size], dtype=np.float32)
 
         return {
-            "agent": self.agent_pos.astype(np.float32),
+            "agent": agent_normalized.astype(np.float32),
             "velocity": self.vel.astype(np.float32),
-            "goal": self.goal_pos.astype(np.float32),
+            "goal": goal_normalized.astype(np.float32),
             "blow_phase": phase_map[self.blow_phase],
             "blow_axis": blow_axis,
             "blow_centers": blow_centers,
-            "blow_width": self.blow_width,
+            "blow_width": blow_width_normalized,
         }

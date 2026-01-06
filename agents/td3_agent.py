@@ -8,6 +8,8 @@ from agents.networks import Actor, Critic
 from agents.replay_buffer import ReplayBuffer
 from agents.base import BaseAgent
 
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+
 # TODO move to utils
 def flat_obs_dim(obs_space):
     if isinstance(obs_space, spaces.Box):
@@ -40,7 +42,7 @@ class TD3Agent(BaseAgent):
         policy_delay=2,
         buffer_size=int(1e6),
         batch_size=256,
-        device="cpu",
+        device=DEVICE,
         **kwargs
     ):
         assert isinstance(action_space, spaces.Box), \
@@ -164,3 +166,10 @@ class TD3Agent(BaseAgent):
     def _soft_update(self, net, target):
         for p, tp in zip(net.parameters(), target.parameters()):
             tp.data.copy_(self.tau * p.data + (1 - self.tau) * tp.data)
+
+    def save(self, path):
+        torch.save(self.actor.state_dict(), path)
+
+    def load(self, path):
+        self.q.load_state_dict(torch.load(path, map_location=self.device))
+        self.q.eval()

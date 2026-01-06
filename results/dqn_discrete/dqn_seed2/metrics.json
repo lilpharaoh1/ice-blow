@@ -1,0 +1,32 @@
+[
+  {
+    "episode": 0,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 2
+  },
+  {
+    "episode": 1,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 2
+  },
+  {
+    "episode": 2,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 2
+  },
+  {
+    "episode": 3,
+    "reward": -1.0,
+    "length": 400,
+    "seed": 2
+  },
+  {
+    "episode": 4,
+    "reward": -1.0,
+    "length": 100,
+    "seed": 2
+  }
+]

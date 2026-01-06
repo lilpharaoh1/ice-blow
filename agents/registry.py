@@ -20,9 +20,11 @@ def make_agent(cfg, env):
 
     agent_cls = AGENT_REGISTRY[agent_type]
 
+    # Extract agent-specific parameters from config (exclude 'type')
+    agent_kwargs = {k: v for k, v in cfg.agent.items() if k != "type"}
+
     return agent_cls(
-        cfg=cfg,
         action_space=env.action_space,
         obs_space=env.observation_space,
-        env_type=cfg.env.get("type", "discrete"),
+        **agent_kwargs,
     )

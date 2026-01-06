@@ -1,11 +1,12 @@
 experiment_name: dqn_discrete
 n_seeds: 1
-start_seed: 0
+start_seed: 1
 
 defaults:
   env:
     type: discrete
     grid_size: 10
+    max_vel: 1.0
 
   blow:
     interval: 50
@@ -15,9 +16,19 @@ defaults:
     num_lines: 2
 
   run:
-    steps: 100000
+    steps: 200000
 
 runs:
   - name: dqn
     agent:
       type: dqn
+      # Tuned hyperparameters for better learning
+      lr: 0.0003            # Lower learning rate for stability
+      batch_size: 256       # Keep same
+      buffer_size: 1000000  # Keep same
+      epsilon_start: 1.0
+      epsilon_end: 0.05
+      epsilon_decay: 180000 # Decay over 90% of training (200k * 0.9)
+      target_update_freq: 1000
+      gamma: 0.99
+      hidden_sizes: [512, 512]  # Larger network for better capacity

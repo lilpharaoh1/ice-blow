@@ -1,0 +1,24 @@
+experiment_name: keyboard_discrete
+n_seeds: 1
+start_seed: 1
+
+defaults:
+  env:
+    type: discrete
+    grid_size: 10
+    max_vel: 1.0
+
+  blow:
+    interval: 50
+    warning_duration: 50
+    active_duration: 5
+    width: 1
+    num_lines: 2
+
+  run:
+    steps: 25000
+
+runs:
+  - name: random
+    agent:
+      type: random

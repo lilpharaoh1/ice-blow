@@ -1,0 +1,23 @@
+experiment_name: td3
+n_seeds: 1
+start_seed: 0
+
+defaults:
+  env:
+    type: continuous
+    grid_size: 10
+
+  blow:
+    interval: 50
+    warning_duration: 50
+    active_duration: 5
+    width: 1
+    num_lines: 2
+
+  run:
+    steps: 25000
+
+runs:
+  - name: td3
+    agent:
+      type: td3

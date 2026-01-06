@@ -17,7 +17,7 @@ class KeyboardAgent(BaseAgent):
         self.env_type = env_type
         self.speed = speed
 
-    def act(self, obs):
+    def act(self, obs, **kwargs):
         keys = pygame.key.get_pressed()
 
         if self.env_type == "gridworld":

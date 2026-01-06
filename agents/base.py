@@ -14,6 +14,3 @@ class BaseAgent(ABC):
 
     def update(self):
         pass
-
-    def reset(self):
-        pass
