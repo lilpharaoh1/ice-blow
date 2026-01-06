@@ -1,10 +1,14 @@
 from agents.random_agent import RandomAgent
 from agents.keyboard_agent import KeyboardAgent
+from agents.dqn_agent import DQNAgent
+from agents.td3_agent import TD3Agent
 
 
 AGENT_REGISTRY = {
     "random": RandomAgent,
     "keyboard": KeyboardAgent,
+    "dqn": DQNAgent,
+    "td3": TD3Agent,
 }
 
 

@@ -20,7 +20,7 @@ class KeyboardAgent(BaseAgent):
     def act(self, obs):
         keys = pygame.key.get_pressed()
 
-        if self.env_type == "discrete":
+        if self.env_type == "gridworld":
             if keys[pygame.K_UP]:
                 return 1
             if keys[pygame.K_RIGHT]:
@@ -29,7 +29,18 @@ class KeyboardAgent(BaseAgent):
                 return 0
             if keys[pygame.K_LEFT]:
                 return 2
-            return 4  # no-op
+            return 4 # no-op
+        
+        elif self.env_type == "discrete":
+            if keys[pygame.K_UP]:
+                return 4
+            if keys[pygame.K_RIGHT]:
+                return 1
+            if keys[pygame.K_DOWN]:
+                return 3
+            if keys[pygame.K_LEFT]:
+                return 2
+            return 0 # no-op
 
         else:  # continuous
             action = np.zeros(self.action_space.shape[0], dtype=np.float32)

@@ -1,0 +1,23 @@
+experiment_name: dqn_discrete
+n_seeds: 1
+start_seed: 0
+
+defaults:
+  env:
+    type: discrete
+    grid_size: 10
+
+  blow:
+    interval: 50
+    warning_duration: 50
+    active_duration: 5
+    width: 1
+    num_lines: 2
+
+  run:
+    steps: 100000
+
+runs:
+  - name: dqn
+    agent:
+      type: dqn

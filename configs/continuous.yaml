@@ -18,9 +18,17 @@ defaults:
     steps: 2000
 
 runs:
-  # - name: random
+  # - name: dqn
   #   agent:
-  #     type: random
+  #     type: dqn
+
+  - name: td3
+    agent:
+      type: td3
+
+  - name: random
+    agent:
+      type: random
 
   - name: keyboard
     agent:

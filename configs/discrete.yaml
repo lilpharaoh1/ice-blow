@@ -18,6 +18,14 @@ defaults:
     steps: 2000
 
 runs:
+  - name: dqn
+    agent:
+      type: dqn
+
+  # - name: td3
+  #   agent:
+  #     type: td3
+
   - name: random
     agent:
       type: random

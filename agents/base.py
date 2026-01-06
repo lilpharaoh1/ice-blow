@@ -6,11 +6,10 @@ class BaseAgent(ABC):
         self.action_space = action_space
         self.obs_space = obs_space
 
-    @abstractmethod
-    def act(self, obs):
-        pass
+    def act(self, obs, explore=True):
+        raise NotImplementedError
 
-    def observe(self, trajectory):
+    def store(self, obs, action, reward, next_obs, done):
         pass
 
     def update(self):

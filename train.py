@@ -1,3 +1,4 @@
+import os
 import argparse
 import pygame
 import numpy as np
@@ -6,6 +7,7 @@ from run_utils import setup_run_list
 from agents.registry import make_agent
 from render import IceBlowRenderer
 
+from envs.ice_blow_gridworld import IceBlowGridworldEnv
 from envs.ice_blow_discrete import IceBlowDiscreteEnv
 from envs.ice_blow_continuous import IceBlowContinuousEnv
 
@@ -28,7 +30,12 @@ def make_env(run):
         num_blow_lines=blow_cfg["num_lines"],
     )
 
-    if run.env["type"] == "discrete":
+    if run.env["type"] == "gridworld":
+        return IceBlowGridworldEnv(
+            grid_size=run.env["grid_size"],
+            **common_kwargs,
+        )
+    elif run.env["type"] == "discrete":
         return IceBlowDiscreteEnv(
             grid_size=run.env["grid_size"],
             **common_kwargs,
@@ -46,13 +53,25 @@ def make_env(run):
 # Single run (train or eval)
 # ---------------------------------------------------------------------
 
-def run_single(run, render=False, fps=30, eval_mode=False):
+def run_single(
+    run,
+    render=False,
+    fps=30,
+    eval_mode=False,
+    load_path=None,
+    save_dir="checkpoints",
+):
     print(f"\n=== Running {run.run_name} | eval={eval_mode} ===")
 
     np.random.seed(run.seed)
 
     env = make_env(run)
     agent = make_agent(run, env)
+
+    if load_path is not None:
+        print(f"Loading agent weights from {load_path}")
+        agent.load(load_path)
+
 
     logger = Logger(run.output_path)
     trajectory = Trajectory()
@@ -68,25 +87,19 @@ def run_single(run, render=False, fps=30, eval_mode=False):
     episode_length = 0
     episode_idx = 0
 
-    max_steps = run.run["steps"]
+    for step in range(run.run["steps"]):
 
-    for step in range(max_steps):
-
-        # --------------------------------------------------------------
-        # Handle window events (only if rendering)
-        # --------------------------------------------------------------
         if render:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     return
 
-        # --------------------------------------------------------------
-        # Agent action
-        # --------------------------------------------------------------
-        action = agent.act(obs)
+        # --------------------------------------------------
+        # Act
+        # --------------------------------------------------
+        action = agent.act(obs, explore=not eval_mode)
 
-        # Allow no-op actions (keyboard agent)
         if action is None:
             if render:
                 renderer.step()
@@ -94,14 +107,24 @@ def run_single(run, render=False, fps=30, eval_mode=False):
 
         next_obs, reward, done, _, info = env.step(action)
 
-        trajectory.add(obs, action, reward, done)
+        # --------------------------------------------------
+        # Store transition (TRAIN ONLY)
+        # --------------------------------------------------
+        if not eval_mode:
+            agent.store(obs, action, reward, next_obs, done)
 
         episode_reward += reward
         episode_length += 1
 
-        # --------------------------------------------------------------
-        # Rendering
-        # --------------------------------------------------------------
+        # --------------------------------------------------
+        # Update agent
+        # --------------------------------------------------
+        if not eval_mode:
+            agent.update()
+
+        # --------------------------------------------------
+        # Render
+        # --------------------------------------------------
         if render:
             renderer.render(
                 agent_pos=obs["agent"] if isinstance(obs, dict) else obs[:2],
@@ -116,9 +139,9 @@ def run_single(run, render=False, fps=30, eval_mode=False):
 
         obs = next_obs
 
-        # --------------------------------------------------------------
+        # --------------------------------------------------
         # Episode termination
-        # --------------------------------------------------------------
+        # --------------------------------------------------
         if done:
             logger.log_episode({
                 "episode": episode_idx,
@@ -128,21 +151,21 @@ def run_single(run, render=False, fps=30, eval_mode=False):
                 "eval": eval_mode,
             })
 
-            if not eval_mode:
-                agent.observe(trajectory)
-                agent.update()
-
-            trajectory.clear()
             agent.reset()
-
             obs, _ = env.reset()
 
             episode_reward = 0.0
             episode_length = 0
             episode_idx += 1
 
-    logger.flush()
+    if not eval_mode:
+        os.makedirs(save_dir, exist_ok=True)
+        ckpt_path = os.path.join(save_dir, f"{run.run_name}.pt")
+        agent.save(ckpt_path)
+        print(f"Saved model to {ckpt_path}")
 
+
+    logger.flush()
     if render:
         pygame.quit()
 
@@ -157,6 +180,10 @@ def main():
     parser.add_argument("--render", action="store_true")
     parser.add_argument("--fps", type=int, default=30)
     parser.add_argument("--eval", action="store_true")
+    parser.add_argument("--load", type=str, default=None,
+                    help="Path to agent checkpoint (.pt) to load")
+    parser.add_argument("--save-dir", type=str, default="checkpoints")
+
 
     args = parser.parse_args()
 
