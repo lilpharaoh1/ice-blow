@@ -7,7 +7,7 @@ def setup_run_list(run_file):
     with open(run_file, "r") as f:
         cfg = yaml.safe_load(f)
 
-    n_seeds = cfg.get("n_seeds", 1)
+    n_seeds = cfg.get("n_seeds", 0)
     start_seed = cfg.get("start_seed", 0)
 
     defaults = cfg.get("defaults", {})
@@ -15,7 +15,8 @@ def setup_run_list(run_file):
 
     run_list = []
 
-    for seed in range(start_seed, start_seed + n_seeds):
+    assert start_seed <= n_seeds 
+    for seed in range(start_seed, n_seeds + 1):
         for run_cfg in runs:
             run = deepcopy(run_cfg)
 

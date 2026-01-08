@@ -29,19 +29,24 @@ def make_env(run):
         num_blow_lines=blow_cfg["num_lines"],
     )
 
+    env_kwargs = {
+        k: v for k, v in run.env.items()
+    }
+
     if run.env["type"] == "gridworld":
         return IceBlowGridworldEnv(
-            grid_size=run.env["grid_size"],
+            # grid_size=run.env["grid_size"],
             **common_kwargs,
+            **env_kwargs
         )
     elif run.env["type"] == "discrete":
         return IceBlowDiscreteEnv(
-            grid_size=run.env["grid_size"],
+            # grid_size=run.env["grid_size"],
             **common_kwargs,
         )
     elif run.env["type"] == "continuous":
         return IceBlowContinuousEnv(
-            grid_size=run.env["grid_size"],
+            # grid_size=run.env["grid_size"],
             **common_kwargs,
         )
     else:
@@ -85,6 +90,9 @@ def run_single(
     episode_length = 0
     episode_idx = 0
 
+    avg_reward = 0
+    avg_decay = 0.1
+    
     print_every = 10000 if run.run["steps"] > 10000 else 1000
     max_step = run.run["steps"]
     for step in range(max_step):
@@ -112,14 +120,16 @@ def run_single(
 
         global_step += 1   # ← ADD THIS
 
-        if global_step > agent.batch_size * 5:
+        # try:
+        if getattr(agent, "batch_size", False) and global_step > agent.batch_size * 5:
             metrics = agent.update()
 
             # Log training metrics every 1000 steps
             if metrics and global_step % 1000 == 0:
                 logger.log_training_step(global_step, metrics)
-                print(f"Step {global_step}: Loss={metrics['loss']:.4f}, Q-value={metrics['q_value_mean']:.4f}, Epsilon={metrics['epsilon']:.4f}")
-
+                print(f"Step {global_step}: Loss={metrics['loss']:.4f}, Reward={avg_reward:.4f}, Q-value={metrics['q_value_mean']:.4f}, Epsilon={metrics['epsilon']:.4f}")
+        # except:
+        #     pass # not trainable agent
 
 
         if render:
@@ -145,6 +155,7 @@ def run_single(
             })
 
             obs, _ = env.reset()
+            avg_reward = episode_reward * avg_decay + avg_reward * (1-avg_decay)
 
             episode_reward = 0.0
             episode_length = 0

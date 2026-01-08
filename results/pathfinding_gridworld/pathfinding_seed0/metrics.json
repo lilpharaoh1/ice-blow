@@ -1,0 +1,302 @@
+[
+  {
+    "episode": 0,
+    "reward": 21.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 1,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 2,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 3,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 4,
+    "reward": 33.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 5,
+    "reward": 33.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 6,
+    "reward": 36.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 7,
+    "reward": 33.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 8,
+    "reward": 26.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 9,
+    "reward": 25.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 10,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 11,
+    "reward": 27.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 12,
+    "reward": 26.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 13,
+    "reward": 31.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 14,
+    "reward": 26.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 15,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 16,
+    "reward": 27.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 17,
+    "reward": 20.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 18,
+    "reward": 37.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 19,
+    "reward": 26.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 20,
+    "reward": 33.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 21,
+    "reward": 22.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 22,
+    "reward": 30.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 23,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 24,
+    "reward": 27.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 25,
+    "reward": 29.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 26,
+    "reward": 30.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 27,
+    "reward": 25.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 28,
+    "reward": 27.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 29,
+    "reward": 34.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 30,
+    "reward": 27.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 31,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 32,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 33,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 34,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 35,
+    "reward": 35.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 36,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 37,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 38,
+    "reward": 24.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 39,
+    "reward": 32.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 40,
+    "reward": 31.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 41,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 42,
+    "reward": 31.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 43,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 44,
+    "reward": 34.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 45,
+    "reward": 26.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 46,
+    "reward": 33.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 47,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 48,
+    "reward": 31.0,
+    "length": 200,
+    "seed": 0
+  },
+  {
+    "episode": 49,
+    "reward": 28.0,
+    "length": 200,
+    "seed": 0
+  }
+]

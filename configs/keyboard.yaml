@@ -4,7 +4,7 @@ start_seed: 1
 
 defaults:
   env:
-    type: discrete
+    type: gridworld
     grid_size: 10
     max_vel: 1.0
 
@@ -19,6 +19,6 @@ defaults:
     steps: 25000
 
 runs:
-  - name: random
+  - name: keyboard
     agent:
-      type: random
+      type: keyboard

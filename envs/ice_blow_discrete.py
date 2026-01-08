@@ -12,10 +12,10 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
     def __init__(
         self,
         grid_size=10,
-        dt=0.1,
-        friction=0.98,
-        vel_scale=1.0,
-        max_vel=1.0,
+        dt=0.033,
+        friction=0.90,
+        vel_scale=0.5,  # Reduced from 1.0 for smoother control
+        max_vel=5.0,    # Increased max velocity for faster movement
         **kwargs
     ):
         super().__init__(world_size=grid_size, **kwargs)
@@ -24,6 +24,7 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
         self.dt = dt
         self.friction = friction
         self.vel_scale = vel_scale
+        self.max_vel = max_vel
 
         # Discrete action mapping:
         # 0 = no change
@@ -54,7 +55,7 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
                 shape=(2,),
                 dtype=np.float32
             ),
-            "blow_phase": spaces.Discrete(3),  # 0=idle, 1=warning, 2=active
+            # "blow_phase": spaces.Discrete(3),  # 0=idle, 1=warning, 2=active
             "blow_axis": spaces.Discrete(3),   # 0=x, 1=y, 2=inactive
             "blow_centers": spaces.Box(
                 low=0.0,
@@ -62,12 +63,12 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
                 shape=(self.num_blow_lines,),
                 dtype=np.float32
             ),
-            "blow_width": spaces.Box(
-                low=0.0,
-                high=1.0,
-                shape=(1,),
-                dtype=np.float32
-            ),
+            # "blow_width": spaces.Box(
+            #     low=0.0,
+            #     high=1.0,
+            #     shape=(1,),
+            #     dtype=np.float32
+            # ),
         })
 
         self.vel = np.zeros(2, dtype=np.float32)
@@ -101,20 +102,23 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
         dvel = np.zeros_like(self.vel)
 
         if action == 1:
-            dvel[0] += self.vel_scale
-        elif action == 2:
             dvel[0] -= self.vel_scale
+        elif action == 2:
+            dvel[0] += self.vel_scale
         elif action == 3:
-            dvel[1] += self.vel_scale
-        elif action == 4:
             dvel[1] -= self.vel_scale
+        elif action == 4:
+            dvel[1] += self.vel_scale
         # action 0 = no change
 
-        # apply discrete velocity adjustment
-        self.vel += dvel * self.dt
+        # apply discrete velocity adjustment (no dt here - vel_scale is the direct impulse)
+        self.vel += dvel
 
         # friction
         self.vel *= self.friction
+
+        # clamp velocity to max_vel
+        self.vel = np.clip(self.vel, -self.max_vel, self.max_vel)
 
         # integrate position
         self.agent_pos += self.vel * self.dt
@@ -147,8 +151,8 @@ class IceBlowDiscreteEnv(IceBlowBaseEnv):
             "agent": agent_normalized.astype(np.float32),
             "velocity": self.vel.astype(np.float32),
             "goal": goal_normalized.astype(np.float32),
-            "blow_phase": phase_map[self.blow_phase],
+            # "blow_phase": phase_map[self.blow_phase],
             "blow_axis": blow_axis,
             "blow_centers": blow_centers,
-            "blow_width": blow_width_normalized,
+            # "blow_width": blow_width_normalized,
         }

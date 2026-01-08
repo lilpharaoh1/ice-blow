@@ -11,7 +11,8 @@ from train import make_env
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--runfile", type=str, required=True)
-    parser.add_argument("--checkpoint", type=str, required=True)
+    parser.add_argument("--checkpoint", type=str, default=None,
+                        help="Path to checkpoint (optional for non-trainable agents)")
     parser.add_argument("--episodes", type=int, default=10)
     parser.add_argument("--render", action="store_true")
     parser.add_argument("--fps", type=int, default=30)
@@ -22,7 +23,16 @@ def main():
 
     env = make_env(run)
     agent = make_agent(run, env)
-    agent.load(args.checkpoint)
+
+    # Only load checkpoint if provided and agent supports it
+    if args.checkpoint is not None:
+        if hasattr(agent, 'load'):
+            agent.load(args.checkpoint)
+        else:
+            print(f"Warning: Agent {type(agent).__name__} has no load method, ignoring checkpoint")
+    elif hasattr(agent, 'load'):
+        # Trainable agent without checkpoint - warn user
+        print(f"Note: No checkpoint provided for trainable agent {type(agent).__name__}")
 
     renderer = None
     if args.render:

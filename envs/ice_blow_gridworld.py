@@ -26,16 +26,15 @@ class IceBlowGridworldEnv(IceBlowBaseEnv):
                 shape=(2,), 
                 dtype=np.int32
             ),
-            "blow_phase": spaces.Discrete(3),  # idle, warning, active
-            "blow_axis": spaces.Discrete(2),
+            # "blow_phase": espaces.Discrete(3),  # idle, warning, active
+            "blow_axis": spaces.Discrete(3),
             "blow_centers": spaces.Box(
                 low=0,
                 high=grid_size - 1,
                 shape=(self.num_blow_lines,),
                 dtype=np.int32,
             ),
-            "blow_width": spaces.Discrete(grid_size),
-
+            # "blow_width": spaces.Discrete(grid_size),
         })
 
 
@@ -47,11 +46,11 @@ class IceBlowGridworldEnv(IceBlowBaseEnv):
 
     def _apply_action(self, action):
         move = {
-            0: np.array([0, 1]),
-            1: np.array([0, -1]),
-            2: np.array([-1, 0]),
-            3: np.array([1, 0]),
-            4: np.array([0, 0]),
+            0: np.array([0, 0]),
+            1: np.array([-1, 0]),
+            2: np.array([1, 0]),
+            3: np.array([0, -1]),
+            4: np.array([0, 1]),
         }[action]
 
         self.agent_pos = np.clip(
@@ -61,17 +60,26 @@ class IceBlowGridworldEnv(IceBlowBaseEnv):
         )
         
     def _get_obs(self):
+        agent_normalized = self.agent_pos / self.grid_size
+        goal_normalized = self.goal_pos / self.grid_size
+
+        # Handle blow information consistently (no -1 values)
+        if self.blow_centers is not None:
+            # Normalize blow centers to [0, 1]
+            blow_centers = np.array(self.blow_centers, dtype=np.float32) / self.grid_size
+        else:
+            # Use 0.0 when inactive (valid value in [0, 1])
+            blow_centers = np.zeros(self.num_blow_lines, dtype=np.float32)
+
+        blow_axis = self.blow_axis if self.blow_axis is not None else 2
+
         phase_map = {"idle": 0, "warning": 1, "active": 2}
         return {
-            "agent": self.agent_pos.copy(),
-            "goal": self.goal_pos.copy(),
-            "blow_phase": phase_map[self.blow_phase],
-            "blow_axis": -1 if self.blow_axis is None else self.blow_axis,
-            "blow_centers": (
-                np.array(self.blow_centers, dtype=np.int32)
-                if self.blow_centers is not None
-                else np.full(self.num_blow_lines, -1)
-            ),
-            "blow_width": self.blow_width,
+            "agent": agent_normalized,
+            "goal": goal_normalized,
+            # "blow_phase": phase_map[self.blow_phase],
+            "blow_axis": blow_axis,
+            "blow_centers": blow_centers
+            # "blow_width": self.blow_width,
         }
 

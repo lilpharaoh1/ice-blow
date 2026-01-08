@@ -1,0 +1,31 @@
+experiment_name: pathfinding_discrete
+n_seeds: 0
+start_seed: 0
+
+defaults:
+  env:
+    type: discrete
+    grid_size: 10
+    dt: 0.033
+    friction: 0.90
+    vel_scale: 0.5
+    max_vel: 5.0
+    time_limit: 500
+
+  blow:
+    interval: 100
+    warning_duration: 100
+    active_duration: 5
+    width: 1
+    num_lines: 2
+
+  run:
+    steps: 10000
+
+runs:
+  - name: pathfinding_discrete
+    agent:
+      type: pathfinding_discrete
+      # Only need agent-specific params, blow/env params are auto-populated
+      grid_resolution: 20
+      safety_buffer: 1.5

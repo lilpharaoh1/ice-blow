@@ -1,6 +1,7 @@
 import gymnasium as gym
 import numpy as np
 import torch
+import time
 
 from agents.dqn_agent import DQNAgent
 
@@ -12,7 +13,7 @@ def main():
         obs_space=env.observation_space,
         action_space=env.action_space,
         gamma=0.99,
-        lr=1e-3,
+        lr=3e-4,
         batch_size=64,
         buffer_size=100_000,
         epsilon_start=1.0,
@@ -21,7 +22,9 @@ def main():
         target_update_freq=1000,
     )
 
-    obs, _ = env.reset(seed=0)
+    obs_raw, _ = env.reset(seed=0)
+    obs = {"state": obs_raw}
+
 
     episode_reward = 0
     episode = 0
@@ -36,7 +39,7 @@ def main():
 
         agent.store(obs, action, reward, next_obs, done)
 
-        if step > 1000:
+        if step > agent.batch_size:
             agent.update()
 
         obs = next_obs
@@ -49,6 +52,7 @@ def main():
                 avg = np.mean(rewards[-10:])
                 print(
                     f"Episode {episode:4d} | "
+                    f"Step {step:4d} | "
                     f"Reward {episode_reward:4.0f} | "
                     f"Avg(10) {avg:6.1f} | "
                     f"Eps {agent.epsilon:.3f}"
@@ -63,6 +67,20 @@ def main():
         if len(rewards) > 100 and np.mean(rewards[-100:]) > 475:
             print("🎉 CartPole solved!")
             break
+
+    env.close()
+
+    env = gym.make("CartPole-v1", render_mode="human")
+
+    state, _ = env.reset()
+    done = False
+
+    while not done:
+        env.render()
+        action = agent.act(state, explore=False)
+        next_state, reward, done, _, _= env.step(action)
+        state = next_state
+        time.sleep(0.01)  # Add a delay to make the visualization easier to follow
 
     env.close()
 

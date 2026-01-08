@@ -1,22 +1,22 @@
-experiment_name: dqn_discrete
-n_seeds: 1
+experiment_name: dqn_gridworld
+n_seeds: 0
 start_seed: 0
 
 defaults:
   env:
-    type: discrete
+    type: gridworld
     grid_size: 10
-    max_vel: 1.0
+    time_limit: 100    
 
   blow:
-    interval: 150
-    warning_duration: 150
+    interval: 5
+    warning_duration: 5
     active_duration: 5
-    width: 0
+    width: 1
     num_lines: 2
 
   run:
-    steps: 1000000
+    steps: 200000
 
 runs:
   - name: dqn
@@ -24,11 +24,11 @@ runs:
       type: dqn
       # Tuned hyperparameters for better learning
       lr: 0.0003            # Lower learning rate for stability
-      batch_size: 256       # Keep same
+      batch_size: 254       # Keep same
       buffer_size: 200000  # Keep same
       epsilon_start: 1.0
       epsilon_end: 0.05
       epsilon_decay: 180000 # Decay over 90% of training (200k * 0.9)
       target_update_freq: 1000
-      gamma: 0.99
+      gamma: 0.9
       hidden_sizes: [512, 512]  # Larger network for better capacity

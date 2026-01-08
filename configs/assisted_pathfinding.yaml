@@ -1,0 +1,26 @@
+experiment_name: assisted_pathfinding_gridworld
+n_seeds: 0
+start_seed: 0
+
+defaults:
+  env:
+    type: gridworld
+    grid_size: 10
+    time_limit: 500
+
+  blow:
+    interval: 10
+    warning_duration: 20
+    active_duration: 20
+    width: 1
+    num_lines: 2
+
+  run:
+    steps: 10000
+
+runs:
+  - name: assisted_pathfinding
+    agent:
+      type: assisted_pathfinding
+      safety_margin: 0
+      risk_averse: false

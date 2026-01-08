@@ -1,0 +1,26 @@
+experiment_name: pathfinding_gridworld
+n_seeds: 0
+start_seed: 0
+
+defaults:
+  env:
+    type: gridworld
+    grid_size: 10
+    time_limit: 200
+
+  blow:
+    interval: 10
+    warning_duration: 5
+    active_duration: 5
+    width: 1
+    num_lines: 2
+
+  run:
+    steps: 10000
+
+runs:
+  - name: pathfinding
+    agent:
+      type: pathfinding
+      # Only need agent-specific params, blow/env params are auto-populated
+      safety_margin: 0

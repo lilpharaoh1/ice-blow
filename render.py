@@ -70,7 +70,7 @@ class IceBlowRenderer:
         # --------------------------------------------------------------
         # Draw goal
         # --------------------------------------------------------------
-        gx, gy = goal_pos
+        gx, gy = goal_pos * world_size
         goal_rect = pygame.Rect(
             gx * cell_size,
             gy * cell_size,
@@ -82,7 +82,7 @@ class IceBlowRenderer:
         # --------------------------------------------------------------
         # Draw agent
         # --------------------------------------------------------------
-        ax, ay = agent_pos
+        ax, ay = agent_pos * world_size
         agent_rect = pygame.Rect(
             ax * cell_size,
             ay * cell_size,

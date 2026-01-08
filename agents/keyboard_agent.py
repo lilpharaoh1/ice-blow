@@ -21,25 +21,25 @@ class KeyboardAgent(BaseAgent):
         keys = pygame.key.get_pressed()
 
         if self.env_type == "gridworld":
-            if keys[pygame.K_UP]:
+            if keys[pygame.K_LEFT]:
                 return 1
             if keys[pygame.K_RIGHT]:
+                return 2
+            if keys[pygame.K_UP]:
                 return 3
             if keys[pygame.K_DOWN]:
-                return 0
-            if keys[pygame.K_LEFT]:
-                return 2
-            return 4 # no-op
+                return 4
+            return 0 # no-op
         
         elif self.env_type == "discrete":
-            if keys[pygame.K_UP]:
-                return 4
-            if keys[pygame.K_RIGHT]:
-                return 1
-            if keys[pygame.K_DOWN]:
-                return 3
             if keys[pygame.K_LEFT]:
+                return 1
+            if keys[pygame.K_RIGHT]:
                 return 2
+            if keys[pygame.K_UP]:
+                return 3
+            if keys[pygame.K_DOWN]:
+                return 4
             return 0 # no-op
 
         else:  # continuous
